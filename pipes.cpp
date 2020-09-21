@@ -8,7 +8,7 @@ pipes::pipes()
 int pipes::update()
 {
     unsigned int i;
-    //int temp = 0;
+    int dotcounter = 0;
     bool isdouble = false;
     bool characters = false;
     string filter, core;
@@ -21,9 +21,10 @@ int pipes::update()
     {
         if(filter[i] == '.')
         {
+            dotcounter++;
             isdouble = true;
         }
-        else if(filter[i] < '0' || filter[i] > '9')
+        else if(filter[i] < '0' || filter[i] > '9' || dotcounter > 1 || filter[0] == '.')
         {
             characters = true;
         }
@@ -82,6 +83,10 @@ int pipes::update()
         {
             is_repaired = false;
         }
+    }
+    else if (filter[0] == 'o' && filter[1] == 'u' && filter[2] == 't' && filter.length() == 3)
+    {
+        printf("\nID number: %d\nLength: %lf\nDiameter: %lf\nBeing repaired: %d\n\n", id, length, diam, is_repaired);
     }
     else if (filter[0] == 'e' && filter[1] == 'x' && filter.length() == 2)
     {

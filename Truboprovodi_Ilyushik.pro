@@ -4,4 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp
+        ks.cpp \
+        main.cpp \
+        pipes.cpp
+
+HEADERS += \
+    ks.h \
+    pipes.h

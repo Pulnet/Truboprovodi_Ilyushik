@@ -16,7 +16,7 @@ int main()
     cin >> choise;
     if(choise == 1)
     {
-        printf("Enter number.\nTo enter identifictior, type 'id_' before it,\n'ln_' for length,\n'dm_' for diameter.\nType 'repair' to switch repairing status.\nType 'out' to withdraw data on screen.\nType 'ex' to close application.\n\n");
+        printf("Enter number.\nTo enter identifictior, type 'id_' before it,\n'ln_' for length,\n'dm_' for diameter.\nType 'repair_1' or 'repair_0' to switch repairing status.\nType 'out' to withdraw data on screen.\nType 'ex' to close application.\n\n");
         while(1)
         {
             returned = pipe_one.update();

@@ -73,25 +73,34 @@ int pipes::update()
         }
     }
 
-    else if (filter[0] == 'r' && filter[1] == 'e' && filter[2] == 'p' && filter[3] == 'a' && filter[4] == 'i' && filter[5] == 'r' && filter.length() == 6)
+    else if (filter[0] == 'r' && filter[1] == 'e' && filter[2] == 'p' && filter[3] == 'a' && filter[4] == 'i' && filter[5] == 'r' && filter[6] == '_' && filter[7] == '1' && filter.length() == 8)
     {
-        if(is_repaired == false)
+        is_repaired = true;
+    }
+
+    else if (filter[0] == 'r' && filter[1] == 'e' && filter[2] == 'p' && filter[3] == 'a' && filter[4] == 'i' && filter[5] == 'r' && filter[6] == '_' && filter[7] == '0' && filter.length() == 8)
+    {
+        is_repaired = false;
+    }
+
+    else if (filter[0] == 'o' && filter[1] == 'u' && filter[2] == 't' && filter.length() == 3)
+    {
+        printf("\nID number: %d\nLength: %lf\nDiameter: %lf\nBeing repaired: ", id, length, diam);
+        if(is_repaired == 1)
         {
-            is_repaired = true;
+            printf("Yes\n\n");
         }
         else
         {
-            is_repaired = false;
+            printf("No\n\n");
         }
     }
-    else if (filter[0] == 'o' && filter[1] == 'u' && filter[2] == 't' && filter.length() == 3)
-    {
-        printf("\nID number: %d\nLength: %lf\nDiameter: %lf\nBeing repaired: %d\n\n", id, length, diam, is_repaired);
-    }
+
     else if (filter[0] == 'e' && filter[1] == 'x' && filter.length() == 2)
     {
         return 3;
     }
+
     else
     {
         return 4; //ошибка - не команда

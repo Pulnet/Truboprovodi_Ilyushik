@@ -2,22 +2,18 @@
 
 ks::ks()
 {
-//    int id = 0, shopnumber = 0, shopsworking = 0;
-//    string name;
-//    double efficency = 0;
 
 }
 
-int ks::update()
+
+int ks::update(string filter)
 {
     unsigned int i;
-    int dotcounter = 0;
+    int dotcounter = 0, error = 0;
     bool isdouble = false;
     bool characters = false;
-    string filter, core;
+    string core, temp_im_ex;
 
-    //считывание введенной строки
-    cin >> filter;
 
     //проверяем ее на наличие точек и прочих символов
     for(i = 3; i < filter.length(); i++)
@@ -86,6 +82,19 @@ int ks::update()
         name = core;
     }
 
+    else if (filter[0] == 'r' && filter[1] == 's' && filter[2] == '_')
+    {
+        if(isdouble == false && characters == false)
+        {
+            core = filter.substr(3);
+            shopsworking = std::stoi(core);
+        }
+        else
+        {
+            return 1; //ошибка - не целое число
+        }
+    }
+
     else if (filter[0] == 's' && filter[1] == 't' && filter[2] == 'a' && filter[3] == 'r' && filter[4] == 't' && filter[5] == 'w' && filter.length() == 6)
     {
         shopsworking++;
@@ -112,6 +121,45 @@ int ks::update()
         }
         printf("\nNumber of workshops: %d\nNumber of running workshops: %d\nOverall efficiency: %lf\n\n", shopnumber, shopsworking, efficiency);
     }
+
+    else if (filter[0] == 'o' && filter[1] == 'u' && filter[2] == 't' && filter[3] == '_' && filter[4] == 'f' && filter.length() == 5)
+    {
+        //ввод и вывод из файла http://cppstudio.com/post/446/
+        ofstream fout("ks_data.txt");
+
+        temp_im_ex = "id_" + std::to_string(id); //инт в стринг https://stackoverflow.com/questions/5590381/easiest-way-to-convert-int-to-string-in-c
+        fout << temp_im_ex << endl;
+
+        temp_im_ex = "sn_" + std::to_string(shopnumber);
+        fout << temp_im_ex << endl;
+
+        temp_im_ex = "ef_" + std::to_string(efficiency);
+        fout << temp_im_ex << endl;
+
+        temp_im_ex = "nm_" + name;
+        fout << temp_im_ex << endl;
+
+        temp_im_ex = "rs_" + std::to_string(shopsworking);
+        fout << temp_im_ex << endl;
+
+        fout << "end";
+
+        printf("\nData was exported to ks_data.txt\n");
+    }
+
+    else if (filter[0] == 'i' && filter[1] == 'n' && filter[2] == '_' && filter[3] == 'f' && filter.length() == 4)
+    {
+        printf("\nImporting data...\n");
+        error = this->readfile(filter);
+        if(error == 0)
+        {
+            printf("Success!\n");
+        }else
+        {
+            printf("There is no file named ks_data.txt!\n");
+        }
+    }
+
     else if (filter[0] == 'e' && filter[1] == 'x' && filter.length() == 2)
     {
         return 3;
@@ -121,7 +169,28 @@ int ks::update()
         return 4; //ошибка - не команда
     }
 
+    return 0;
+}
 
 
+int ks::readfile(string filter)
+{
+    //ввод и вывод из файла http://cppstudio.com/post/446/
+    bool fileend = false;
+    ifstream fin("ks_data.txt");
+    if (!fin.is_open())
+    {
+        return 1;
+    }
+    while(fileend == false)
+    {
+        if(filter == "end")
+        {
+            fileend = true;
+        }
+
+        fin >> filter;
+        this->update(filter);
+    }
     return 0;
 }

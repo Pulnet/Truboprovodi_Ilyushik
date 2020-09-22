@@ -5,16 +5,13 @@ pipes::pipes()
 {
 
 }
-int pipes::update()
+int pipes::update(string filter)
 {
     unsigned int i;
-    int dotcounter = 0;
+    int dotcounter = 0, error = 0;
     bool isdouble = false;
     bool characters = false;
-    string filter, core;
-
-    //считывание введенной строки
-    cin >> filter;
+    string core, temp_im_ex;
 
     //проверяем ее на наличие точек и прочих символов
     for(i = 3; i < filter.length(); i++)
@@ -96,6 +93,41 @@ int pipes::update()
         }
     }
 
+    else if (filter[0] == 'o' && filter[1] == 'u' && filter[2] == 't' && filter[3] == '_' && filter[4] == 'f' && filter.length() == 5)
+    {
+        //ввод и вывод из файла http://cppstudio.com/post/446/
+        ofstream fout("pipes_data.txt");
+
+        temp_im_ex = "id_" + std::to_string(id); //инт в стринг https://stackoverflow.com/questions/5590381/easiest-way-to-convert-int-to-string-in-c
+        fout << temp_im_ex << endl;
+
+        temp_im_ex = "ln_" + std::to_string(length);
+        fout << temp_im_ex << endl;
+
+        temp_im_ex = "dm_" + std::to_string(diam);
+        fout << temp_im_ex << endl;
+
+        temp_im_ex = "repair_" + std::to_string(is_repaired);
+        fout << temp_im_ex << endl;
+
+        fout << "end";
+
+        printf("\nData was exported to pipes_data.txt\n");
+    }
+
+    else if (filter[0] == 'i' && filter[1] == 'n' && filter[2] == '_' && filter[3] == 'f' && filter.length() == 4)
+    {
+        printf("\nImporting data...\n");
+        error = this->readfile(filter);
+        if(error == 0)
+        {
+            printf("Success!\n");
+        }else
+        {
+            printf("There is no file named pipes_data.txt!\n");
+        }
+    }
+
     else if (filter[0] == 'e' && filter[1] == 'x' && filter.length() == 2)
     {
         return 3;
@@ -108,5 +140,27 @@ int pipes::update()
 
 
 
+    return 0;
+}
+
+int pipes::readfile(string filter)
+{
+    //ввод и вывод из файла http://cppstudio.com/post/446/
+    bool fileend = false;
+    ifstream fin("pipes_data.txt");
+    if (!fin.is_open())
+    {
+        return 1;
+    }
+    while(fileend == false)
+    {
+        if(filter == "end")
+        {
+            fileend = true;
+        }
+
+        fin >> filter;
+        this->update(filter);
+    }
     return 0;
 }

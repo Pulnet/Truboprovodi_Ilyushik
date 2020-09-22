@@ -12,14 +12,16 @@ int main()
     pipes pipe_one;
     ks ks_one;
     int returned, choise;
+    string input;
     printf("Enter 1 to modify Pipes and 2 to modify KS.\n");
     cin >> choise;
     if(choise == 1)
     {
-        printf("Enter number.\nTo enter identifictior, type 'id_' before it,\n'ln_' for length,\n'dm_' for diameter.\nType 'repair_1' or 'repair_0' to switch repairing status.\nType 'out' to withdraw data on screen.\nType 'ex' to close application.\n\n");
+        printf("\nEnter command.\nTo enter identifictior, type 'id_' before it, i.e. id_174 will set ID to 174,\n'ln_' for length,\n'dm_' for diameter.\n'repair_1' or 'repair_0' to switch repairing status.\n'out' to withdraw data on screen.\n'out_f' to export data to file.\n'in_f' to import data from file.\n'ex' to close application.\n\n");
         while(1)
         {
-            returned = pipe_one.update();
+            cin >> input;
+            returned = pipe_one.update(input);
             if (returned == 1)
             {
                 printf("Error: not an integer number. Try again.\n");
@@ -41,10 +43,11 @@ int main()
     }
     else if(choise == 2)
     {
-        printf("Enter number.\nTo enter identifictior, type 'id_' before it,\n'sn_' for number of workshops,\nstartw' and 'stopw' to start and stop workshop.\n'ef_' for efficency (number from 0.0 to 1.0).\nType 'nm_' to change name.\nType 'out' to withdraw data on screen.\nType 'ex' to close application.\n\n");
+        printf("\nEnter command.\nTo enter identifictior, type 'id_' before it, i.e. id_174 will set ID to 174,\n'sn_' for number of workshops,\n'startw' and 'stopw' to start and stop workshop.\n'rs_' to set amount of working workshops\n'ef_' for efficency (number between 0.0 and 1.0).\n'nm_' to change name.\n'out' to withdraw data on screen.\n'out_f' to export data to file.\n'in_f' to import data from file.\n'ex' to close application.\n\n");
         while(1)
         {
-            returned = ks_one.update();
+            cin >> input;
+            returned = ks_one.update(input);
             if (returned == 1)
             {
                 printf("Error: not an integer number. Try again.\n");

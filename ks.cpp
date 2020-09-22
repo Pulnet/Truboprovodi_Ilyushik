@@ -30,7 +30,7 @@ int ks::update(string filter)
     }
 
     //выясняем команду и обрабатываем данные
-    if (filter[0] == 'i' && filter[1] == 'd' && filter[2] == '_')
+    if (filter[0] == 'i' && filter[1] == 'd' && filter[2] == '_' && filter.length() > 3)
     {
         if(isdouble == false && characters == false)
         {
@@ -44,7 +44,7 @@ int ks::update(string filter)
         }
     }
 
-    else if (filter[0] == 's' && filter[1] == 'n' && filter[2] == '_')
+    else if (filter[0] == 's' && filter[1] == 'n' && filter[2] == '_' && filter.length() > 3)
     {
         if(isdouble == false && characters == false)
         {
@@ -57,7 +57,7 @@ int ks::update(string filter)
         }
     }
 
-    else if (filter[0] == 'e' && filter[1] == 'f' && filter[2] == '_')
+    else if (filter[0] == 'e' && filter[1] == 'f' && filter[2] == '_' && filter.length() > 3)
     {
         if(characters == false)
         {
@@ -76,13 +76,13 @@ int ks::update(string filter)
             return 2; //ошибка - не число
         }
     }
-    else if (filter[0] == 'n' && filter[1] == 'm' && filter[2] == '_')
+    else if (filter[0] == 'n' && filter[1] == 'm' && filter[2] == '_' && filter.length() > 3)
     {
         core = filter.substr(3);
         name = core;
     }
 
-    else if (filter[0] == 'r' && filter[1] == 's' && filter[2] == '_')
+    else if (filter[0] == 'r' && filter[1] == 's' && filter[2] == '_' && filter.length() > 3)
     {
         if(isdouble == false && characters == false)
         {

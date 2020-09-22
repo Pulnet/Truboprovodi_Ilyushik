@@ -28,7 +28,7 @@ int pipes::update(string filter)
     }
 
     //выясняем команду и обрабатываем данные
-    if (filter[0] == 'i' && filter[1] == 'd' && filter[2] == '_')
+    if (filter[0] == 'i' && filter[1] == 'd' && filter[2] == '_' && filter.length() > 3)
     {
         if(isdouble == false && characters == false)
         {
@@ -42,13 +42,12 @@ int pipes::update(string filter)
         }
     }
 
-    else if (filter[0] == 'l' && filter[1] == 'n' && filter[2] == '_')
+    else if (filter[0] == 'l' && filter[1] == 'n' && filter[2] == '_' && filter.length() > 3)
     {
         if(characters == false)
         {
             core = filter.substr(3);
             length = std::stod(core);
-            //printf("%lf", diam);
         }
         else
         {
@@ -56,7 +55,7 @@ int pipes::update(string filter)
         }
     }
 
-    else if (filter[0] == 'd' && filter[1] == 'm' && filter[2] == '_')
+    else if (filter[0] == 'd' && filter[1] == 'm' && filter[2] == '_' && filter.length() > 3)
     {
         if(characters == false)
         {

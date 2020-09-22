@@ -11,14 +11,14 @@ int main()
 {
     pipes pipe_one;
     ks ks_one;
-    int returned, choise;
-    string input;
+    int returned;
+    string input, choise;
     printf("Enter 1 to modify Pipes and 2 to modify KS.\n");
 
     while(1)
     {
         cin >> choise;
-        if (choise != 1 && choise != 2)
+        if ((choise[0] != '1' && choise[0] != '2') || choise.length() > 1)
         {
             printf("Error: not a command. Try again.\n");
         }
@@ -28,7 +28,7 @@ int main()
         }
     }
 
-    if(choise == 1)
+    if(choise[0] == '1')
     {
         printf("\nEnter command.\nTo enter identifictior, type 'id_' before it, i.e. id_174 will set ID to 174,\n'ln_' for length,\n'dm_' for diameter.\n'repair_1' or 'repair_0' to switch repairing status.\n'out' to withdraw data on screen.\n'out_f' to export data to file.\n'in_f' to import data from file.\n'ex' to close application.\n\n");
         while(1)
@@ -54,7 +54,7 @@ int main()
         }
 
     }
-    else if(choise == 2)
+    else if(choise[0] == '2')
     {
         printf("\nEnter command.\nTo enter identifictior, type 'id_' before it, i.e. id_174 will set ID to 174,\n'sn_' for number of workshops,\n'startw' and 'stopw' to start and stop workshop.\n'rs_' to set amount of working workshops\n'ef_' for efficency (number between 0.0 and 1.0).\n'nm_' to change name.\n'out' to withdraw data on screen.\n'out_f' to export data to file.\n'in_f' to import data from file.\n'ex' to close application.\n\n");
         while(1)

@@ -14,7 +14,20 @@ int main()
     int returned, choise;
     string input;
     printf("Enter 1 to modify Pipes and 2 to modify KS.\n");
-    cin >> choise;
+
+    while(1)
+    {
+        cin >> choise;
+        if (choise != 1 && choise != 2)
+        {
+            printf("Error: not a command. Try again.\n");
+        }
+        else
+        {
+            break;
+        }
+    }
+
     if(choise == 1)
     {
         printf("\nEnter command.\nTo enter identifictior, type 'id_' before it, i.e. id_174 will set ID to 174,\n'ln_' for length,\n'dm_' for diameter.\n'repair_1' or 'repair_0' to switch repairing status.\n'out' to withdraw data on screen.\n'out_f' to export data to file.\n'in_f' to import data from file.\n'ex' to close application.\n\n");
@@ -70,10 +83,7 @@ int main()
             }
         }
     }
-    else
-    {
-        printf("Error: not a command. Try again.\n");
-    }
+
 
     return 0;
 }

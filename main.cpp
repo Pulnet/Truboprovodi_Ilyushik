@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cmath>
 #include "pipes.h"
 #include "ks.h"
 
@@ -15,7 +16,7 @@ int main()
     vector <ks> ks_arr;
     ks_arr.emplace_back();
     int returned;
-    unsigned int count = 0;
+    unsigned int count = 0, maxcount;
     string input, choise;
     printf("Enter 1 to modify Pipes and 2 to modify KS.\n");
 
@@ -34,11 +35,32 @@ int main()
 
     if(choise[0] == '1')
     {
-        printf("\nEnter command.\nTo enter identifictior, type 'id_' before it, i.e. id_174 will set ID to 174,\n'ln_' for length,\n'dm_' for diameter.\n'repair_1' or 'repair_0' to switch repairing status.\n'out' to withdraw data on screen.\n'out_f' to export data to file.\n'in_f' to import data from file.\n'next' and 'prev' to to modify next and pervious pipe.\n'ex' to close application.\n\n");
+        printf("\nEnter command.\nTo enter identifictior, type 'id_' before it, i.e. id_174 will set ID to 174,\n'ln_' for length,\n'dm_' for diameter.\n'repair_1' or 'repair_0' to switch repairing status.\n'out' to withdraw data on screen.\n'out_fall' to export data to file.\n'in_f' to import data from file.\n'next' and 'prev' to to modify next and pervious pipe.\n'ex' to close application.\n\n");
         while(1)
         {
             cin >> input;
-            returned = pipe_arr[count].update(input);
+            returned = pipe_arr[count].update(input, count);
+            while (returned == 20)
+            {
+                pipe_arr.emplace_back();
+                count++;
+                maxcount = max(maxcount, count);
+                returned = pipe_arr[count].update("in_f", count);
+            }
+            if (returned == 21)
+            {
+                maxcount = count;
+                count = 0;
+                while (count <= maxcount)
+                {
+                    returned = pipe_arr[count].update("out_f", count);
+                    count++;
+                }
+                count--;
+                returned = pipe_arr[count].update("cls_f", count);
+
+            }
+
             if (returned == 1)
             {
                 printf("Error: not an integer number. Try again.\n");
@@ -62,6 +84,7 @@ int main()
                     pipe_arr.emplace_back();
                 }
                 count++;
+                maxcount = max(maxcount, count);
             }
             if (returned == 11)
             {
@@ -80,11 +103,31 @@ int main()
     }
     else if(choise[0] == '2')
     {
-        printf("\nEnter command.\nTo enter identifictior, type 'id_' before it, i.e. id_174 will set ID to 174,\n'sn_' for number of workshops,\n'startw' and 'stopw' to start and stop workshop.\n'rs_' to set amount of working workshops\n'ef_' for efficency (number between 0.0 and 1.0).\n'nm_' to change name.\n'out' to withdraw data on screen.\n'out_f' to export data to file.\n'in_f' to import data from file.\n'next' and 'prev' to to modify next and pervious KS.\n'ex' to close application.\n\n");
+        printf("\nEnter command.\nTo enter identifictior, type 'id_' before it, i.e. id_174 will set ID to 174,\n'sn_' for number of workshops,\n'startw' and 'stopw' to start and stop workshop.\n'rs_' to set amount of working workshops\n'ef_' for efficency (number between 0.0 and 1.0).\n'nm_' to change name.\n'out' to withdraw data on screen.\n'out_fall' to export data to file.\n'in_f' to import data from file.\n'next' and 'prev' to to modify next and pervious KS.\n'ex' to close application.\n\n");
         while(1)
         {
             cin >> input;
-            returned = ks_arr[count].update(input);
+            returned = ks_arr[count].update(input, count);
+            while (returned == 20)
+            {
+                ks_arr.emplace_back();
+                count++;
+                maxcount = max(maxcount, count);
+                returned = ks_arr[count].update("in_f", count);
+            }
+            if (returned == 21)
+            {
+                maxcount = count;
+                count = 0;
+                while (count <= maxcount)
+                {
+                    returned = ks_arr[count].update("out_f", count);
+                    count++;
+                }
+                count--;
+                returned = ks_arr[count].update("cls_f", count);
+
+            }
             if (returned == 1)
             {
                 printf("Error: not an integer number. Try again.\n");
@@ -112,6 +155,7 @@ int main()
                     ks_arr.emplace_back();
                 }
                 count++;
+                maxcount = max(maxcount, count);
             }
             if (returned == 11)
             {
@@ -124,6 +168,7 @@ int main()
                     count--;
                 }
             }
+
         }
     }
 

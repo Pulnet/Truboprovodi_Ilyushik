@@ -11,7 +11,7 @@ public:
     int id = 0, shopnumber = 0, shopsworking = 0;
     string name;
     double efficiency = 0;
-    int update(string filter);
-    int readfile(string filter);
+    int update(string filter, unsigned int count);
+    int readfile(string filter, unsigned int count);
 };
 

@@ -160,6 +160,18 @@ int ks::update(string filter)
         }
     }
 
+    else if (filter[0] == 'n' && filter[1] == 'e' && filter[2] == 'x' && filter[3] == 't' && filter.length() == 4)
+    {
+        printf("\nSwitching to next KS...\n");
+        return 10;
+    }
+
+    else if (filter[0] == 'p' && filter[1] == 'r' && filter[2] == 'e' && filter[3] == 'v' && filter.length() == 4)
+    {
+        printf("\nSwitching to previous KS...\n");
+        return 11;
+    }
+
     else if (filter[0] == 'e' && filter[1] == 'x' && filter.length() == 2)
     {
         return 3;

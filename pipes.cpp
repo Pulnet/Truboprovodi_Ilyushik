@@ -126,6 +126,17 @@ int pipes::update(string filter)
             printf("There is no file named pipes_data.txt!\n");
         }
     }
+    else if (filter[0] == 'n' && filter[1] == 'e' && filter[2] == 'x' && filter[3] == 't' && filter.length() == 4)
+    {
+        printf("\nSwitching to next pipe...\n");
+        return 10;
+    }
+
+    else if (filter[0] == 'p' && filter[1] == 'r' && filter[2] == 'e' && filter[3] == 'v' && filter.length() == 4)
+    {
+        printf("\nSwitching to previous pipe...\n");
+        return 11;
+    }
 
     else if (filter[0] == 'e' && filter[1] == 'x' && filter.length() == 2)
     {

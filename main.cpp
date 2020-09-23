@@ -55,6 +55,10 @@ int main()
                 {
                     returned = pipe_arr[count].update("out_f", count);
                     count++;
+                    if(count <= maxcount)
+                    {
+                        returned = pipe_arr[count].update("spr_f", count);
+                    }
                 }
                 count--;
                 returned = pipe_arr[count].update("cls_f", count);
@@ -123,6 +127,10 @@ int main()
                 {
                     returned = ks_arr[count].update("out_f", count);
                     count++;
+                    if(count <= maxcount)
+                    {
+                        returned = ks_arr[count].update("spr_f", count);
+                    }
                 }
                 count--;
                 returned = ks_arr[count].update("cls_f", count);

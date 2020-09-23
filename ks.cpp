@@ -141,7 +141,6 @@ int ks::update(string filter, unsigned int count)
         temp_im_ex = "rs_" + std::to_string(shopsworking);
         fout << temp_im_ex << endl;
 
-        fout << "separ" << endl;
 
     }
     else if (filter[0] == 'o' && filter[1] == 'u' && filter[2] == 't' && filter[3] == '_' && filter[4] == 'f' && filter[5] == 'a' && filter[6] == 'l' && filter[7] == 'l' && filter.length() == 8)
@@ -151,6 +150,13 @@ int ks::update(string filter, unsigned int count)
         return 21;
 
     }
+
+    else if (filter[0] == 's' && filter[1] == 'p' && filter[2] == 'r' && filter[3] == '_' && filter[4] == 'f' && filter.length() == 5)
+    {
+        ofstream fout("ks_data.txt", ios_base::app);
+        fout << "separ" << endl;
+    }
+
 
     else if (filter[0] == 'c' && filter[1] == 'l' && filter[2] == 's' && filter[3] == '_' && filter[4] == 'f' && filter.length() == 5)
     {

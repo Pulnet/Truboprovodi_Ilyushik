@@ -165,6 +165,11 @@ int pipes::update(string filter, unsigned int count)
         return 3;
     }
 
+    else if (filter[0] == 'k' && filter[1] == 's' && filter.length() == 2)
+    {
+        return 12;
+    }
+
     else
     {
         return 4; //ошибка - не команда

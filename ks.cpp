@@ -209,6 +209,11 @@ int ks::update(string filter, unsigned int count)
     {
         return 3;
     }
+
+    else if (filter[0] == 'p' && filter[1] == 'i' && filter[2] == 'p' && filter[3] == 'e' && filter.length() == 4)
+    {
+        return 12;
+    }
     else
     {
         return 4; //ошибка - не команда

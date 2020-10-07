@@ -4,6 +4,8 @@
 #include <fstream>
 using namespace std;
 
+//классы закоммичены до 23 сентября
+
 class ks
 {
 public:

@@ -12,6 +12,5 @@ public:
     double length = 0, diam  = 0;
     bool is_repaired = false;
     int update(string filter, unsigned int count);
-    int readfile(string filter, unsigned int count);
 };
 

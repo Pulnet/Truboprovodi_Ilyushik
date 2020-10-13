@@ -14,6 +14,5 @@ public:
     string name;
     double efficiency = 0;
     int update(string filter, unsigned int count);
-    int readfile(string filter, unsigned int count);
 };
 

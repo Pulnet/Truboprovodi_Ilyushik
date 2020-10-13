@@ -125,7 +125,7 @@ int ks::update(string filter, unsigned int count)
     else if (filter[0] == 'o' && filter[1] == 'u' && filter[2] == 't' && filter[3] == '_' && filter[4] == 'f' && filter.length() == 5)
     {
         //ввод и вывод из файла http://cppstudio.com/post/446/
-        ofstream fout("ks_data.txt", ios_base::app);
+        ofstream fout("all_data.txt", ios_base::app);
         temp_im_ex = "id_" + std::to_string(id); //инт в стринг https://stackoverflow.com/questions/5590381/easiest-way-to-convert-int-to-string-in-c
         fout << temp_im_ex << endl;
 
@@ -145,22 +145,28 @@ int ks::update(string filter, unsigned int count)
     }
     else if (filter[0] == 'o' && filter[1] == 'u' && filter[2] == 't' && filter[3] == '_' && filter[4] == 'f' && filter[5] == 'a' && filter[6] == 'l' && filter[7] == 'l' && filter.length() == 8)
     {
-        ofstream fout("ks_data.txt");
-        printf("\nExporting to ks_data.txt...\n");
+        ofstream fout("all_data.txt");
+        printf("\nExporting to all_data.txt...\n");
         return 21;
 
     }
 
     else if (filter[0] == 's' && filter[1] == 'p' && filter[2] == 'r' && filter[3] == '_' && filter[4] == 'f' && filter.length() == 5)
     {
-        ofstream fout("ks_data.txt", ios_base::app);
-        fout << "separ" << endl;
+        ofstream fout("all_data.txt", ios_base::app);
+        fout << "next" << endl;
+    }
+
+    else if (filter[0] == 's' && filter[1] == 'w' && filter[2] == 't' && filter[3] == '_' && filter[4] == 'f' && filter.length() == 5)
+    {
+        ofstream fout("all_data.txt", ios_base::app);
+        fout << "swit" << endl;
     }
 
 
     else if (filter[0] == 'c' && filter[1] == 'l' && filter[2] == 's' && filter[3] == '_' && filter[4] == 'f' && filter.length() == 5)
     {
-        ofstream fout("ks_data.txt", ios_base::app);
+        ofstream fout("all_data.txt", ios_base::app);
         fout << "end";
         printf("\nSuccess!\n");
     }
@@ -168,29 +174,9 @@ int ks::update(string filter, unsigned int count)
     else if (filter[0] == 'o' && filter[1] == 'u' && filter[2] == 't' && filter[3] == '_' && filter[4] == 'f' && filter.length() == 5)
     {
         //ввод и вывод из файла http://cppstudio.com/post/446/
-        ofstream fout("ks_data.txt");
+        ofstream fout("all_data.txt");
+        fout << "next";
 
-
-        fout << "separ";
-
-    }
-
-    else if (filter[0] == 'i' && filter[1] == 'n' && filter[2] == '_' && filter[3] == 'f' && filter.length() == 4)
-    {
-        printf("\nImporting data...\n");
-        error = this->readfile(filter, count);
-        if(error == 0)
-        {
-            printf("Success!\n");
-        }
-        else if (error == 1)
-        {
-            printf("There is no file named ks_data.txt!\n");
-        }
-        else if (error == 10)
-        {
-            return 20; //возврат в main указания на то, что нужно пролистнуть трубу и вызвать функцию считывания еще раз
-        }
     }
 
     else if (filter[0] == 'n' && filter[1] == 'e' && filter[2] == 'x' && filter[3] == 't' && filter.length() == 4)
@@ -223,40 +209,4 @@ int ks::update(string filter, unsigned int count)
 }
 
 
-int ks::readfile(string filter, unsigned int count)
-{
-    //ввод и вывод из файла http://cppstudio.com/post/446/
-    bool fileend = false;
-    unsigned int separs = 0;
-    ifstream fin("ks_data.txt");
-    if (!fin.is_open())
-    {
-        return 1;
-    }
-    while(fileend == false)
-    {
-        if(count > 0)
-        {
-            while(separs < count)
-            {
-                fin >> filter;
-                if(filter == "separ")
-                {
-                    separs++;
-                }
-            }
-        }
-        fin >> filter;
-        if(filter == "end")
-        {
-            fileend = true;
-        }
-        if(filter == "separ")
-        {
-            return 10; //возврат в update() указания на то, что нужно пролистнуть трубу и вызвать эту функцию еще раз
-        }
 
-        this->update(filter, count);
-    }
-    return 0;
-}

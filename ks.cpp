@@ -94,6 +94,12 @@ int ks::update(string filter)
 
     }
 
+    else if (filter[0] == 'o' && filter[1] == 'u' && filter[2] == 't' && filter[3] == '_' && filter[4] == 'a' && filter[5] == 'l' && filter[6] == 'l'  && filter.length() == 7)
+    {
+        ofstream fout(filename);
+        return 22;
+    }
+
     else if (filter[0] == 's' && filter[1] == 'p' && filter[2] == 'r' && filter[3] == '_' && filter[4] == 'f' && filter.length() == 5)
     {
         ofstream fout(filename, ios_base::app);

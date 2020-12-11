@@ -73,6 +73,13 @@ int pipes::update(string filter)
         this_to_file();
     }
 
+    else if (filter[0] == 'o' && filter[1] == 'u' && filter[2] == 't' && filter[3] == '_' && filter[4] == 'a' && filter[5] == 'l' && filter[6] == 'l'  && filter.length() == 7)
+    {
+        ofstream fout(filename);
+        return 22;
+
+    }
+
     else if (filter[0] == 'o' && filter[1] == 'u' && filter[2] == 't' && filter[3] == '_' && filter[4] == 'f' && filter[5] == 'a' && filter[6] == 'l' && filter[7] == 'l' && filter.length() == 8)
     {
         ofstream fout(filename);

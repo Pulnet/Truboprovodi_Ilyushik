@@ -45,7 +45,7 @@ int main()
     {
         if(choise[0] == '1')
         {
-            printf("\nEnter the command.\n\nType 'auto' to start automatic input.\n\nType 'search' to search Pipes.\n\nTo enter identifictior, type 'id_' before it, i.e. id_174 will set ID to 174,\n'ln_' for length,\n'dm_' for diameter.\n'repair_1' or 'repair_0' to switch repairing status.\n'nm_' to change name.\n\n'out' to withdraw data on screen.\n'out_fall' to export data to file.\n'next' and 'prev' to to modify next and pervious pipe.\n\n'ks' to switch to KS.\n'ex' to close application.\n\n");
+            printf("\nEnter the command.\n\nType 'auto' to start automatic input.\n\nType 'search' to search Pipes.\n\nTo enter identifictior, type 'id_' before it, i.e. id_174 will set ID to 174,\n'ln_' for length,\n'dm_' for diameter.\n'repair_1' or 'repair_0' to switch repairing status.\n'nm_' to change name.\n\n'out' to withdraw data on screen.\n'out_all' to display all pipes.\n'out_fall' to export data to file.\n'next' and 'prev' to to modify next and pervious pipe.\n\n'ks' to switch to KS.\n'ex' to close application.\n\n");
             while(1)
             {
                 //основной ввод
@@ -134,35 +134,35 @@ int main()
                             }
                             break;
 
+//                        case 2:
+//                            printf("\nEnter length:\n");
+//                            cin >> input;
+//                            input = "ln_" + input;
+//                            returned = pipe_arr[searchids[i]].update(input);
+//                            break;
+
+//                        case 3:
+//                            printf("\nEnter diameter:\n");
+//                            cin >> input;
+//                            input = "dm_" + input;
+//                            returned = pipe_arr[searchids[i]].update(input);
+                            break;
+
                         case 2:
-                            printf("\nEnter length:\n");
-                            cin >> input;
-                            input = "ln_" + input;
-                            returned = pipe_arr[searchids[i]].update(input);
-                            break;
-
-                        case 3:
-                            printf("\nEnter diameter:\n");
-                            cin >> input;
-                            input = "dm_" + input;
-                            returned = pipe_arr[searchids[i]].update(input);
-                            break;
-
-                        case 4:
                             printf("\nIs it under repair? ('1' or '0') \n");
                             cin >> input;
                             input = "repair_" + input;
                             returned = pipe_arr[searchids[i]].update(input);
                             break;
 
-                        case 5:
-                            printf("\nEnter name:\n");
-                            cin >> input;
-                            input = "nm_" + input;
-                            returned = pipe_arr[searchids[i]].update(input);
-                            break;
+//                        case 5:
+//                            printf("\nEnter name:\n");
+//                            cin >> input;
+//                            input = "nm_" + input;
+//                            returned = pipe_arr[searchids[i]].update(input);
+//                            break;
 
-                        case 6:
+                        case 3:
                             printf("\nProceed to next Pipe?('1' or '0')\n");
                             cin >> input;
                             autoedit_step = 0;
@@ -216,6 +216,23 @@ int main()
                     count--;
                     returned = ks_arr[count].update("all_3");
 
+                }
+
+                if (returned == 22)
+                {
+                    count = 0;
+                    while (count < pipe_arr.size())
+                    {
+                        returned = pipe_arr[count].update("out");
+                        count++;
+                    }
+                    count = 0;
+                    while (count < ks_arr.size())
+                    {
+                        returned = ks_arr[count].update("out");
+                        count++;
+                    }
+                    count--;
                 }
 
                 //вывод кода ошибки
@@ -364,35 +381,35 @@ int main()
                             }
                             break;
 
+//                        case 2:
+//                            printf("\nEnter number of workshops:\n");
+//                            cin >> input;
+//                            input = "sn_" + input;
+//                            returned = ks_arr[searchids[i]].update(input);
+//                            break;
+
+//                        case 3:
+//                            printf("\nEnter number of working workshops:\n");
+//                            cin >> input;
+//                            input = "rs_" + input;
+//                            returned = ks_arr[searchids[i]].update(input);
+//                            break;
+
                         case 2:
-                            printf("\nEnter number of workshops:\n");
-                            cin >> input;
-                            input = "sn_" + input;
-                            returned = ks_arr[searchids[i]].update(input);
-                            break;
-
-                        case 3:
-                            printf("\nEnter number of working workshops:\n");
-                            cin >> input;
-                            input = "rs_" + input;
-                            returned = ks_arr[searchids[i]].update(input);
-                            break;
-
-                        case 4:
                             printf("\nEnter efficency (number between 0.0 and 1.0):\n");
                             cin >> input;
                             input = "ef_" + input;
                             returned = ks_arr[searchids[i]].update(input);
                             break;
 
-                        case 5:
-                            printf("\nEnter name:\n");
-                            cin >> input;
-                            input = "nm_" + input;
-                            returned = ks_arr[searchids[i]].update(input);
-                            break;
+//                        case 5:
+//                            printf("\nEnter name:\n");
+//                            cin >> input;
+//                            input = "nm_" + input;
+//                            returned = ks_arr[searchids[i]].update(input);
+//                            break;
 
-                        case 6:
+                        case 3:
                             printf("\nProceed to next ks?('1' or '0')\n");
                             cin >> input;
                             autoedit_step = 0;

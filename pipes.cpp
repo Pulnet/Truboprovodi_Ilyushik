@@ -1,7 +1,6 @@
 #include "pipes.h"
 
 int pipes::staticid = 0;
-
 pipes::pipes():id(staticid++)
 {
 
@@ -84,7 +83,6 @@ int pipes::update(string filter)
     {
         ofstream fout(filename);
         return 21;
-
     }
 
     else if (filter[0] == 'a' && filter[1] == 'l' && filter[2] == 'l' && filter[3] == '_'  && filter.length() == 5)
@@ -197,7 +195,7 @@ void pipes::display()
     {
         printf("No");
     }
-    printf("\nName: ", id);
+    printf("\nName: ");
     for(i = 0; i < name.length(); i++)
     {
         printf("%c", name[i]);
@@ -243,4 +241,10 @@ void pipes::all_to_file(int pointer)
         printf("\nSuccess!\n");
         break;
     }
+}
+
+
+int pipes::return_id()
+{
+    return id;
 }

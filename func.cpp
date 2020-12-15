@@ -2,7 +2,7 @@
 #include "ks.h"
 #include "pipes.h"
 
-vector <int> search(vector <pipes> pipe_arr, vector <ks> ks_arr, int &pipes_or_ks)
+vector <int> search(map <int, pipes> pipe_arr, map <int, ks> ks_arr, int &pipes_or_ks)
 {
     int switchsearch;
     unsigned int j;

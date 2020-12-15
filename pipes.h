@@ -14,6 +14,7 @@ public:
     bool is_repaired = false;
     static int staticid;
     int update(string filter);
+    int return_id();
     int changes(string filter, bool isdouble, bool characters, int pointer);
     void display();
     void this_to_file();

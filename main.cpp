@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <map>
 #include <vector>
 #include <cmath>
 #include "pipes.h"
@@ -12,11 +13,11 @@ using namespace std;
 
 int main()
 {
-    vector <pipes> pipe_arr;
-    pipe_arr.emplace_back();
-    vector <ks> ks_arr;
+    map <int, pipes> pipe_arr;
+    pipe_arr.emplace();
+    map <int, ks> ks_arr;
     vector <int> searchids;
-    ks_arr.emplace_back();
+    ks_arr.emplace();
     int returned, pipes_or_ks = 0;
     unsigned int count = 0, maxcount, autoedit_step = 1, i = 0;
     bool switched = false, autoe = false;
@@ -104,7 +105,6 @@ int main()
 
                 }
 
-
                 if(pipes_or_ks != 0)
                 {
 
@@ -134,33 +134,12 @@ int main()
                             }
                             break;
 
-//                        case 2:
-//                            printf("\nEnter length:\n");
-//                            cin >> input;
-//                            input = "ln_" + input;
-//                            returned = pipe_arr[searchids[i]].update(input);
-//                            break;
-
-//                        case 3:
-//                            printf("\nEnter diameter:\n");
-//                            cin >> input;
-//                            input = "dm_" + input;
-//                            returned = pipe_arr[searchids[i]].update(input);
-                            break;
-
                         case 2:
                             printf("\nIs it under repair? ('1' or '0') \n");
                             cin >> input;
                             input = "repair_" + input;
                             returned = pipe_arr[searchids[i]].update(input);
                             break;
-
-//                        case 5:
-//                            printf("\nEnter name:\n");
-//                            cin >> input;
-//                            input = "nm_" + input;
-//                            returned = pipe_arr[searchids[i]].update(input);
-//                            break;
 
                         case 3:
                             printf("\nProceed to next Pipe?('1' or '0')\n");
@@ -251,7 +230,7 @@ int main()
                 {
                     if(pipe_arr.size() - 1 == count)
                     {
-                        pipe_arr.emplace_back();
+                        pipe_arr.emplace();
                     }
                     count++;
                     maxcount = max(maxcount, count);
@@ -289,10 +268,11 @@ int main()
                     break;
                 }
             }
+
         }
         else if(choise[0] == '2')
         {
-            printf("\nEnter the command.\n\nType 'auto' to start automatic input.\n\nType 'search' to search Pipes and KS.\n\nTo enter identifictior, type 'id_' before it, i.e. id_174 will set ID to 174,\n'sn_' for number of workshops,\n'startw' and 'stopw' to start and stop workshop.\n'rs_' to set amount of working workshops\n'ef_' for efficency (number between 0.0 and 1.0).\n'nm_' to change name.\n\n'out' to withdraw data on screen.\n'out_fall' to export data to file.\n'next' and 'prev' to to modify next and pervious KS.\n\n'pipe' to switch to Pipes.\n'ex' to close application.\n\n");
+            printf("\nEnter the command.\n\nType 'auto' to start automatic input.\n\nType 'search' to search Pipes and KS.\n\nTo enter identifictior, type 'id_' before it, i.e. id_174 will set ID to 174,\n'sn_' for number of workshops,\n'startw' and 'stopw' to start and stop workshop.\n'rs_' to set amount of working workshops\n'ef_' for efficency (number between 0.0 and 1.0).\n'nm_' to change name.\n\n'out' to withdraw data on screen.\n'out_all' to display all ks.\n'out_fall' to export data to file.\n'next' and 'prev' to to modify next and pervious KS.\n\n'pipe' to switch to Pipes.\n'ex' to close application.\n\n");
             while(1)
             {
                 //основной ввод
@@ -381,33 +361,12 @@ int main()
                             }
                             break;
 
-//                        case 2:
-//                            printf("\nEnter number of workshops:\n");
-//                            cin >> input;
-//                            input = "sn_" + input;
-//                            returned = ks_arr[searchids[i]].update(input);
-//                            break;
-
-//                        case 3:
-//                            printf("\nEnter number of working workshops:\n");
-//                            cin >> input;
-//                            input = "rs_" + input;
-//                            returned = ks_arr[searchids[i]].update(input);
-//                            break;
-
                         case 2:
                             printf("\nEnter efficency (number between 0.0 and 1.0):\n");
                             cin >> input;
                             input = "ef_" + input;
                             returned = ks_arr[searchids[i]].update(input);
                             break;
-
-//                        case 5:
-//                            printf("\nEnter name:\n");
-//                            cin >> input;
-//                            input = "nm_" + input;
-//                            returned = ks_arr[searchids[i]].update(input);
-//                            break;
 
                         case 3:
                             printf("\nProceed to next ks?('1' or '0')\n");
@@ -427,7 +386,23 @@ int main()
 
                     }
                 }
-
+                //вывод на экран всего
+                if (returned == 22)
+                {
+                    count = 0;
+                    while (count < pipe_arr.size())
+                    {
+                        returned = pipe_arr[count].update("out");
+                        count++;
+                    }
+                    count = 0;
+                    while (count < ks_arr.size())
+                    {
+                        returned = ks_arr[count].update("out");
+                        count++;
+                    }
+                    count--;
+                }
 
                 //вывод всего
                 if (returned == 21)
@@ -481,7 +456,7 @@ int main()
                 {
                     if(ks_arr.size() - 1 == count)
                     {
-                        ks_arr.emplace_back();
+                        ks_arr.emplace();
                     }
                     count++;
                     maxcount = max(maxcount, count);
@@ -554,7 +529,7 @@ int main()
                     if (returned == 10)
                     {
                         count++;
-                        pipe_arr.emplace_back();
+                        pipe_arr.emplace();
                     }
 
                 }else
@@ -567,7 +542,7 @@ int main()
                     if (returned == 10)
                     {
                         count++;
-                        ks_arr.emplace_back();
+                        ks_arr.emplace();
                     }
 
                 }

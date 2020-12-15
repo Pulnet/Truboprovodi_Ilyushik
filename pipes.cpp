@@ -242,9 +242,3 @@ void pipes::all_to_file(int pointer)
         break;
     }
 }
-
-
-int pipes::return_id()
-{
-    return id;
-}

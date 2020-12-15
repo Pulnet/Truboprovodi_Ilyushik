@@ -82,6 +82,11 @@ int ks::update(string filter)
        display();
     }
 
+    else if (filter[0] == 'n' && filter[1] == 'e' && filter[2] == 't' && filter.length() == 3)
+    {
+        return 102;
+    }
+
     else if (filter[0] == 'o' && filter[1] == 'u' && filter[2] == 't' && filter[3] == '_' && filter[4] == 'f' && filter.length() == 5)
     {
         this_to_file();

@@ -6,7 +6,7 @@
 #include "pipes.h"
 #include "ks.h"
 #include "func.h"
-
+#include "graph.h"
 
 using namespace std;
 
@@ -17,6 +17,7 @@ int main()
     pipe_arr.emplace();
     map <int, ks> ks_arr;
     vector <int> searchids;
+    graph net;
     ks_arr.emplace();
     int returned, pipes_or_ks = 0;
     unsigned int count = 0, maxcount, autoedit_step = 1, i = 0;
@@ -484,7 +485,14 @@ int main()
                 //поиск
                 if (returned == 101)
                 {
+
                    searchids = search(pipe_arr, ks_arr, pipes_or_ks);
+                   returned = 0;
+                }
+                //граф
+                if (returned == 102)
+                {
+                   net.initial(pipe_arr, ks_arr);
                    returned = 0;
                 }
 

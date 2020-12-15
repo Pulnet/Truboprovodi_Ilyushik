@@ -5,11 +5,13 @@ CONFIG -= qt
 
 SOURCES += \
         func.cpp \
+        graph.cpp \
         ks.cpp \
         main.cpp \
         pipes.cpp
 
 HEADERS += \
     func.h \
+    graph.h \
     ks.h \
     pipes.h
